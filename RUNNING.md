@@ -8,4 +8,4 @@ Install deno with:
 
 Run a day with:
 
-    deno run main.ts
+    deno run --allow-read=input main.ts
