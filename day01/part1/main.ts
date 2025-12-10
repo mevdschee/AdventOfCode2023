@@ -1,4 +1,4 @@
-const input = await Deno.readTextFile(new URL('input', import.meta.url));
+const input = await Deno.readTextFile('input');
 const lines = input.trim().split('\n');
 
 function getCalibrationValue(line: string): number {
