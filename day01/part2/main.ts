@@ -13,16 +13,13 @@ const digitMap: Record<string, string> = {
     'nine': '9',
 };
 
-function getCalibrationValue(line: string): number {
+const sum = lines.reduce((total: number, line: string) => {
     const digits: string[] = [];
     
-    // Search for digits and spelled-out numbers from left to right
     for (let i = 0; i < line.length; i++) {
-        // Check for numeric digit
         if (/\d/.test(line[i])) {
             digits.push(line[i]);
         } else {
-            // Check for spelled-out digit
             for (const [word, digit] of Object.entries(digitMap)) {
                 if (line.substring(i).startsWith(word)) {
                     digits.push(digit);
@@ -33,14 +30,12 @@ function getCalibrationValue(line: string): number {
     }
     
     if (digits.length === 0) {
-        return 0;
+        return total;
     }
     
     const firstDigit = digits[0];
     const lastDigit = digits[digits.length - 1];
-    return parseInt(firstDigit + lastDigit);
-}
-
-const sum = lines.reduce((total: number, line: string) => total + getCalibrationValue(line), 0);
+    return total + parseInt(firstDigit + lastDigit);
+}, 0);
 
 console.log(sum);
